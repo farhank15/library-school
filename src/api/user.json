@@ -27,6 +27,13 @@
       "username": "handan",
       "password": "han123",
       "role": "student"
+    },
+    {
+      "id": "89f4",
+      "name": "headmaster",
+      "username": "headmaster123",
+      "password": "headmaster123",
+      "role": "headmaster"
     }
   ],
   "student": [
@@ -35,6 +42,7 @@
       "userId": "1",
       "adminId": "1",
       "class": "10A",
+      "status": "active",
       "lastBorrowedDate": "2023-09-15",
       "prifilImage": "https://imgs.search.brave.com/i4wdBzVhXN-6eGc1Jo0R9c4iFHTp4XP26UJ5Hf7dQZM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iZXJp/dGEuOTkuY28vd3At/Y29udGVudC91cGxv/YWRzLzIwMjIvMDYv/Zm90by1lbHNhLWZy/b3plbi5qcGc"
     },
@@ -43,6 +51,7 @@
       "userId": "3",
       "adminId": "1",
       "class": "10A",
+      "status": "nonactive",
       "lastBorrowedDate": "2023-09-15",
       "prifilImage": "https://imgs.search.brave.com/i4wdBzVhXN-6eGc1Jo0R9c4iFHTp4XP26UJ5Hf7dQZM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9iZXJp/dGEuOTkuY28vd3At/Y29udGVudC91cGxv/YWRzLzIwMjIvMDYv/Zm90by1lbHNhLWZy/b3plbi5qcGc"
     },
@@ -51,6 +60,7 @@
       "userId": "79fd",
       "adminId": "1",
       "class": "10C",
+      "status": "active",
       "prifilImage": "https://picsum.photos/id/237/200/300",
       "lastBorrowedDate": null
     }
@@ -98,6 +108,18 @@
       "publishedYear": 2021,
       "jumlahBuku": 5,
       "cover": "https://picsum.photos/id/232/200/300"
+    },
+    {
+      "id": "cea8",
+      "kodeBuku": "B00",
+      "title": "pepek",
+      "jenis": "kontol",
+      "isbn": "38793187454",
+      "author": "pot",
+      "publisher": "puqii",
+      "publishedYear": "2020",
+      "jumlahBuku": "2",
+      "cover": "https://picsum.photos/id/232/200/300"
     }
   ],
   "borrowing": [
@@ -106,14 +128,39 @@
       "studentId": "1",
       "kodeBuku": "B001",
       "tanggalPeminjaman": "2024-09-09",
-      "tanggalPengembalian": "2024-02-02"
+      "tanggalPengembalian": "2024-02-02",
+      "nomorHp": "081234567890",
+      "status": "1"
     },
     {
       "id": "4efd",
-      "studentId": "1",
+      "studentId": "dbd1",
       "kodeBuku": "B002",
       "tanggalPeminjaman": "2024-09-09",
-      "tanggalPengembalian": "2000-02-12"
+      "tanggalPengembalian": "2000-02-12",
+      "nomorHp": "083879214469",
+      "status": "1"
+    },
+    {
+      "id": "56b0",
+      "studentId": "1",
+      "kodeBuku": "B003",
+      "tanggalPeminjaman": "2024-09-10",
+      "tanggalPengembalian": "2024-02-22",
+      "nomorHp": "0888888888",
+      "status": "0"
+    }
+  ],
+  "guest": [
+    {
+      "id": "9d13",
+      "studentId": "1",
+      "tanggalKunjungan": "2024-09-09"
+    },
+    {
+      "id": "4er4",
+      "studentId": "dbd1",
+      "tanggalKunjungan": "2024-09-09"
     }
   ]
 }

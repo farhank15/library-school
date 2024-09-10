@@ -3,7 +3,7 @@ import React from "react";
 
 const PengunjungPage = () => {
   return (
-    <div>
+    <div className="ml-72">
       <RegisterStudentForm />
     </div>
   );

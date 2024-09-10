@@ -24,12 +24,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="fixed navbar bg-base-100">
       <div className="flex-1">
-        <Link className="btn btn-ghost text-xl">Perpustakaanku</Link>
+        <Link className="text-xl btn btn-ghost">Perpustakaanku</Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal space-x-2 px-1">
+        <ul className="px-1 space-x-2 menu menu-horizontal">
           {isLoggedIn ? (
             <li className="dropdown dropdown-end">
               <label tabIndex={0} className="avatar btn btn-ghost btn-circle">
@@ -42,7 +42,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
                   <Link to="/profile">Profile</Link>

@@ -89,10 +89,12 @@ const PeminjamanForm = () => {
     try {
       // Lakukan POST request ke JSON Server untuk menyimpan data peminjaman
       const borrowingData = {
-        userId: formData.id, // ID User yang melakukan peminjaman
+        studentId: formData.id, // ID User yang melakukan peminjaman
         kodeBuku: formData.kodeBuku, // Kode Buku yang dipinjam
         tanggalPeminjaman: formData.tanggalPeminjaman,
         tanggalPengembalian: formData.tanggalPengembalian,
+        nomorHp: formData.noTelepon, // Nomor telepon peminjam
+        status: "0", // Status set ke 0 (belum dikembalikan)
       };
 
       await axios.post("http://localhost:3000/borrowing", borrowingData);
@@ -118,15 +120,15 @@ const PeminjamanForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-4xl p-6 bg-slate-100 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Peminjaman Buku Perpustakaan SMPN 11 Pontianak
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-4xl p-6 rounded-lg shadow-lg bg-slate-100">
+        <h2 className="mb-6 text-2xl font-bold text-center">
+          Peminjaman Buku Perpustakaan
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Informasi Anggota */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 ID Anggota
@@ -136,7 +138,7 @@ const PeminjamanForm = () => {
                 name="id"
                 value={formData.id}
                 onChange={handleInputChange}
-                className="mt-1 w-full px-3 py-2 text-slate-900 bg-slate-50 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm text-slate-900 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Masukkan ID Anggota"
                 readOnly // Tidak bisa diubah, karena otomatis diambil dari token
               />
@@ -151,7 +153,7 @@ const PeminjamanForm = () => {
                 name="nama"
                 value={formData.nama}
                 onChange={handleInputChange}
-                className="mt-1 w-full px-3 py-2 text-slate-900 bg-slate-50 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm text-slate-900 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Nama Otomatis Terisi"
                 readOnly // Kolom ini hanya baca saja
               />
@@ -166,7 +168,7 @@ const PeminjamanForm = () => {
                 name="noTelepon"
                 value={formData.noTelepon}
                 onChange={handleInputChange}
-                className="mt-1 w-full px-3 py-2 text-slate-900 bg-slate-50 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm text-slate-900 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Masukkan No. Telepon"
                 required
               />
@@ -174,7 +176,7 @@ const PeminjamanForm = () => {
           </div>
 
           {/* Informasi Buku */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Judul Buku
@@ -196,7 +198,7 @@ const PeminjamanForm = () => {
                 name="kodeBuku"
                 value={formData.kodeBuku}
                 onChange={handleInputChange}
-                className="mt-1 w-full px-3 py-2 text-slate-900 bg-slate-50 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm text-slate-900 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Kode Buku Otomatis Terisi"
                 readOnly // Kolom ini hanya baca saja
               />
@@ -204,7 +206,7 @@ const PeminjamanForm = () => {
           </div>
 
           {/* Tanggal Peminjaman dan Pengembalian */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Tanggal Peminjaman
@@ -214,7 +216,7 @@ const PeminjamanForm = () => {
                 name="tanggalPeminjaman"
                 value={formData.tanggalPeminjaman}
                 onChange={handleInputChange}
-                className="mt-1 w-full px-3 py-2 text-slate-900 bg-slate-50 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm text-slate-900 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
                 readOnly // Tanggal ini otomatis diisi dengan tanggal saat ini
               />
@@ -229,7 +231,7 @@ const PeminjamanForm = () => {
                 name="tanggalPengembalian"
                 value={formData.tanggalPengembalian}
                 onChange={handleInputChange}
-                className="mt-1 w-full px-3 py-2 text-slate-900 bg-slate-50 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 mt-1 border rounded-lg shadow-sm text-slate-900 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
@@ -239,13 +241,13 @@ const PeminjamanForm = () => {
           <div className="flex justify-end space-x-4">
             <button
               type="button"
-              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              className="px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+              className="px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600"
             >
               Submit Peminjaman
             </button>

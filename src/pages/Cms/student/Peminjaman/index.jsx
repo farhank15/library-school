@@ -3,7 +3,7 @@ import React from "react";
 
 const PeminjamanPage = () => {
   return (
-    <div>
+    <div className="min-h-screen ml-72">
       <PeminjamanForm />
     </div>
   );

@@ -43,16 +43,19 @@ const LoginForm = () => {
         const fakeToken = `${base64Header}.${base64Payload}.${fakeSignature}`;
         Cookies.set("token", fakeToken, { expires: 1 }); // Token berlaku 1 hari
 
-        // Arahkan pengguna ke halaman yang sesuai berdasarkan role
+        // Arahkan pengguna ke halaman yang sesuai berdasarkan role dan refresh halaman
         if (user.role === "admin") {
-          navigate("/admin");
+          navigate("/admin", { replace: true }); // Arahkan ke /admin dan ganti state history
         } else if (user.role === "student") {
-          navigate("/student");
+          navigate("/student", { replace: true }); // Arahkan ke /student dan ganti state history
         } else if (user.role === "headmaster") {
-          navigate("/headmaster");
+          navigate("/headmaster", { replace: true });
         } else {
-          navigate("/guest");
+          navigate("/guest", { replace: true });
         }
+
+        // Refresh halaman setelah navigasi
+        window.location.reload();
       } else {
         setError("Invalid username or password");
       }
@@ -62,9 +65,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+        <h2 className="mb-6 text-2xl font-bold text-center">Login</h2>
         <form onSubmit={handleLogin}>
           {/* Username Input */}
           <div className="mb-4">
@@ -77,7 +80,7 @@ const LoginForm = () => {
             <input
               type="text"
               id="username"
-              className="w-full px-3 py-2 mt-1 border text-slate-600 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 mt-1 bg-white border rounded-lg shadow-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter your username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -86,7 +89,7 @@ const LoginForm = () => {
           </div>
 
           {/* Password Input */}
-          <div className="mb-4 relative">
+          <div className="relative mb-4">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
@@ -96,7 +99,7 @@ const LoginForm = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
-              className="w-full px-3 py-2 mt-1 text-slate-600 border rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 mt-1 bg-white border rounded-lg shadow-sm text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -104,20 +107,20 @@ const LoginForm = () => {
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 pr-5 top-6 flex items-center text-gray-600"
+              className="absolute inset-y-0 right-0 flex items-center pr-5 text-gray-600 top-6"
               onClick={togglePasswordVisibility}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
 
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          {error && <p className="mb-4 text-sm text-red-500">{error}</p>}
 
           {/* Submit Button */}
           <div className="mb-6">
             <button
               type="submit"
-              className="w-full px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Login
             </button>

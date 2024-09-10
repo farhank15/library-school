@@ -4,7 +4,7 @@ import React from "react";
 
 const StudentPage = () => {
   return (
-    <div>
+    <div className="min-h-screen ml-72">
       <StudentInfo />
       <ListBorrowing />
     </div>

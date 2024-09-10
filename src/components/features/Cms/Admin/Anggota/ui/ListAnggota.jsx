@@ -82,7 +82,7 @@ const ListAnggota = () => {
   }, []);
 
   return (
-    <div className="max-w-4xl p-6 mx-auto rounded-lg shadow-lg">
+    <div className="max-w-4xl min-h-screen p-6 mx-auto rounded-lg shadow-lg">
       <h2 className="mb-4 text-2xl font-bold">Daftar Anggota</h2>
       {error && <p className="text-red-500">{error}</p>}
       <div className="overflow-x-auto">
